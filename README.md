@@ -21,7 +21,7 @@ cd PowerOff-Functions
 ```
 docker run --rm -v "$PWD:/tmp" openwhisk/python2action bash -c "cd /tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"
 ```
-3. Create the zip file with virtualenv folder and __main__.py file.
+3. Create the zip file with virtualenv folder and \_\_main\_\_.py file.
 ```
 zip -r <zip_file> <virtualenv_folder> <main_file>
 ```
@@ -76,3 +76,5 @@ OBS: Substitute <name_of_the_vsi> with the name of the VSI that needs to Powered
 20. Your Function is now created with a Trigger and a Action!
 
 You can use the monitor on Function main screen to check if your function is working properly.
+
+With this snipet you can have an action with several Triggers. Each Trigger with a diffrent VSI name.
