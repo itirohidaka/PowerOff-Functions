@@ -71,7 +71,7 @@ Example:
   "poweraction":"on"
 }
 ```
-OBS: Substitute <name_of_the_vsi> with the name of the VSI that needs to Powered On/Off.
+OBS: Change <name_of_the_vsi> with the name of the VSI that needs to Powered On/Off.
 
 15. Click on "Create" button.
 

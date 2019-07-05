@@ -47,16 +47,16 @@ def main(args):
             # Power off the virtual guest
             virtualMachines = client['SoftLayer_Virtual_Guest'].powerOff(id=virtualGuestId)
             print (virtualGuestName + " powered off")
-            return { "Status": "powered off" }
+            return { "Status": "OK" }
         except SoftLayer.SoftLayerAPIError as e:
-            print("Unable to power off the virtual guest"
+            print("Unable to power on/off the virtual guest"
                   % (e.faultCode, e.faultString))
     elif power == "on":
         try:
             # Power off the virtual guest
             virtualMachines = client['SoftLayer_Virtual_Guest'].powerOn(id=virtualGuestId)
             print (virtualGuestName + " powered off")
-            return { "Status": "powered off" }
+            return { "Status": "OK" }
         except SoftLayer.SoftLayerAPIError as e:
-            print("Unable to power off the virtual guest"
+            print("Unable to power on/off the virtual guest"
                   % (e.faultCode, e.faultString))
