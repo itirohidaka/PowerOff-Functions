@@ -2,8 +2,6 @@ import SoftLayer
 import json
 
 def main(args):
-    greeting = "Hello " + "!"
-
     # Extract the id (VSI ID) from JSON payload. JSON payload received by the Trigger
     name = args.get("payload")
     namejson = json.loads(name)
@@ -15,6 +13,8 @@ def main(args):
     """
     virtualGuestName = namejson["vsiname"]
     print("VSI Name: " + virtualGuestName)
+    power = namejson["poweraction"]
+    print("Power Action: " + power)
 
     """
     # Your SoftLayer API username and key.
@@ -42,11 +42,21 @@ def main(args):
 
     print("VSI ID:" + str(virtualGuestId))
 
-    try:
-        # Power off the virtual guest
-        virtualMachines = client['SoftLayer_Virtual_Guest'].powerOff(id=virtualGuestId)
-        print (virtualGuestName + " powered off")
-        return { "Status": "powered off" }
-    except SoftLayer.SoftLayerAPIError as e:
-        print("Unable to power off the virtual guest"
-              % (e.faultCode, e.faultString))
+    if power == "off":
+        try:
+            # Power off the virtual guest
+            virtualMachines = client['SoftLayer_Virtual_Guest'].powerOff(id=virtualGuestId)
+            print (virtualGuestName + " powered off")
+            return { "Status": "powered off" }
+        except SoftLayer.SoftLayerAPIError as e:
+            print("Unable to power off the virtual guest"
+                  % (e.faultCode, e.faultString))
+    elif power == "on":
+        try:
+            # Power off the virtual guest
+            virtualMachines = client['SoftLayer_Virtual_Guest'].powerOn(id=virtualGuestId)
+            print (virtualGuestName + " powered off")
+            return { "Status": "powered off" }
+        except SoftLayer.SoftLayerAPIError as e:
+            print("Unable to power off the virtual guest"
+                  % (e.faultCode, e.faultString))

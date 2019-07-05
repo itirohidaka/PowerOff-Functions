@@ -59,11 +59,17 @@ open https://cloud.ibm.com
 
 14. In the JSON Payload, type:
 ```
-{ "vsiname":"<name_of_the_vsi>" }
+{
+  "vsiname":"<name_of_the_vsi>",
+  "poweraction":"<power_action>"
+}
 ```
 Example:
 ```
-{ "vsiname":"virtualserver01" }
+{
+  "vsiname":"virtualserver01",
+  "poweraction":"on"
+}
 ```
 OBS: Substitute <name_of_the_vsi> with the name of the VSI that needs to Powered On/Off.
 
