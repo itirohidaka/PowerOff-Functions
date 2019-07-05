@@ -61,6 +61,10 @@ open https://cloud.ibm.com
 ```
 { "vsiname":"<name_of_the_vsi>" }
 ```
+Example:
+```
+{ "vsiname":"virtualserver01" }
+```
 OBS: Substitute <name_of_the_vsi> with the name of the VSI that needs to Powered On/Off.
 
 15. Click on "Create" button.
