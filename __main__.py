@@ -2,6 +2,14 @@ import SoftLayer
 import json
 
 def main(args):
+    """
+    # Your SoftLayer API username and key.
+    # Generate an API key at the SoftLayer Customer Portal:
+    # control.softlayer.com
+    """
+    username = '<username>'
+    key = '<apikey>'
+
     # Extract the id (VSI ID) from JSON payload. JSON payload received by the Trigger
     name = args.get("payload")
     namejson = json.loads(name)
@@ -15,14 +23,6 @@ def main(args):
     print("VSI Name: " + virtualGuestName)
     power = namejson["poweraction"]
     print("Power Action: " + power)
-
-    """
-    # Your SoftLayer API username and key.
-    # Generate an API key at the SoftLayer Customer Portal:
-    # control.softlayer.com
-    """
-    username = '<username>'
-    key = '<apikey>'
 
     # Declare a new API service object
     client = SoftLayer.Client(username=username, api_key=key)
