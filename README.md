@@ -1,4 +1,4 @@
-# PowerOff a VSI using IBM Cloud Functions
+# Power Off a VSI using IBM Cloud Functions
 Description: Snipet to Power Off a VSI (Virtual Server) on IBM Cloud using the IBM Cloud Functions.
 
 Requirements:
