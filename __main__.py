@@ -21,8 +21,8 @@ def main(args):
     # Generate an API key at the SoftLayer Customer Portal:
     # control.softlayer.com
     """
-    username = '1713407_itiro@br.ibm.com'
-    key = '48eccbe805a03d71558cf8fb37b433172acd48bcc194cc7c14965d3b5484853a'
+    username = '<username>'
+    key = '<apikey>'
 
     # Declare a new API service object
     client = SoftLayer.Client(username=username, api_key=key)
