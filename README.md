@@ -1,5 +1,5 @@
 # Power Off a VSI using IBM Cloud Functions
-Description: Snipet to Power Off a VSI (Virtual Server) on IBM Cloud using the IBM Cloud Functions.
+Description: Snippet to Power Off a VSI (Virtual Server) on IBM Cloud using the IBM Cloud Functions.
 
 Requirements:
 - Docker CE installed on your Desktop/Laptop.
@@ -7,7 +7,7 @@ Requirements:
 - I'm using the MacOS X.
 
 The following steps will help you to create an Action on the IBM Cloud Functions.
-This Action is based on a Python 2 snipet.
+This Action is based on a Python 2 snippet.
 
 1. Clone this repo using "git clone" command and access the app folder.
 Example:
@@ -87,4 +87,4 @@ OBS: Change <name_of_the_vsi> with the name of the VSI that needs to Powered On/
 
 You can use the monitor on Function main screen to check if your function is working properly.
 
-With this snipet you can have an action with several Triggers. Each Trigger with a diffrent VSI name.
+With this snippet you can have an action with several Triggers. Each Trigger with a diffrent VSI name.
