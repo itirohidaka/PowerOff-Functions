@@ -17,7 +17,7 @@ git clone https://github.com/itirohidaka/PowerOff-Functions.git
 ```
 cd PowerOff-Functions
 ```
-2. Modify the __main__.py file with IBM Cloud's username and api key.
+2. Modify the \_\_main__.py file with IBM Cloud's username and api key.
 ```
 username = '<username>'
 key = '<apikey>'
