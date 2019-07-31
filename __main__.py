@@ -13,18 +13,19 @@ def main(args):
     print("VSI Name: " + virtualGuestName)
     power = namejson["poweraction"]
     print("Power Action: " + power)
+    
     ibmcloud_iaas_user = namejson["username"]
     print("Username: " + ibmcloud_iaas_user)
     ibmcloud_iaas_key = namejson["key"]
     print("API Key: " + ibmcloud_iaas_key)
-
+    
     """
     # Your SoftLayer API username and key.
     # Generate an API key at the SoftLayer Customer Portal:
     # control.softlayer.com
     """
-    username = 'ibmcloud_iaas_user'
-    key = 'ibmcloud_iaas_key'
+    username = ibmcloud_iaas_user
+    key = ibmcloud_iaas_key
 
     # Declare a new API service object
     client = SoftLayer.Client(username=username, api_key=key)
