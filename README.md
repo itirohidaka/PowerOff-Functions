@@ -4,7 +4,7 @@ Description: Snippet to Power Off a VSI (Virtual Server) on IBM Cloud using the 
 Requirements:
 - Docker CE installed on your Desktop/Laptop.
 - Python 2.7 for some local tests.
-- I'm using the MacOS X.
+- I'm using the MacOS X. But you can modify some commands to get it work on Windows.
 
 The following steps will help you to create an Action on the IBM Cloud Functions.
 This Action is based on a Python 2 snippet.
@@ -60,6 +60,8 @@ open https://cloud.ibm.com
 14. In the JSON Payload, type:
 ```
 {
+  "username": "<softlayer_username>",
+  "key": "<softlayer_api_key>",
   "vsiname":"<name_of_the_vsi>",
   "poweraction":"<power_action>"
 }
@@ -67,6 +69,8 @@ open https://cloud.ibm.com
 Example:
 ```
 {
+  "username": "1234567_itiro@br.ibm.com",
+  "key": "ahsdjklfhlajkshdjkfhaljksdhfkahsldhflasjdhfjkashdk",
   "vsiname":"virtualserver01",
   "poweraction":"on"
 }
