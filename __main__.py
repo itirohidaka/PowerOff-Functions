@@ -2,27 +2,29 @@ import SoftLayer
 import json
 
 def main(args):
-    """
-    # Your SoftLayer API username and key.
-    # Generate an API key at the SoftLayer Customer Portal:
-    # control.softlayer.com
-    """
-    username = '<username>'
-    key = '<apikey>'
-
     # Extract the id (VSI ID) from JSON payload. JSON payload received by the Trigger
     name = args.get("payload")
     namejson = json.loads(name)
 
     """
-    # The name of the machine you wish to power off.
-    # JSON Template to be included in the Trigger: { "vsiname":"<VSIname>"}.
-    # Change the <VSIname> with the VSI hostname
+    # retrive the variables from JSON Payload
     """
     virtualGuestName = namejson["vsiname"]
     print("VSI Name: " + virtualGuestName)
     power = namejson["poweraction"]
     print("Power Action: " + power)
+    ibmcloud_iaas_user = namejson["username"]
+    print("Username: " + ibmcloud_iaas_user)
+    ibmcloud_iaas_key = namejson["key"]
+    print("API Key: " + ibmcloud_iaas_key)
+
+    """
+    # Your SoftLayer API username and key.
+    # Generate an API key at the SoftLayer Customer Portal:
+    # control.softlayer.com
+    """
+    username = 'ibmcloud_iaas_user'
+    key = 'ibmcloud_iaas_key'
 
     # Declare a new API service object
     client = SoftLayer.Client(username=username, api_key=key)
