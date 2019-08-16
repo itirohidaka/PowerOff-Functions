@@ -1,0 +1,4 @@
+[console_scripts]
+sl = SoftLayer.CLI.deprecated:main
+slcli = SoftLayer.CLI.core:main
+
