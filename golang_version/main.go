@@ -1,11 +1,13 @@
-/**
- *
- * main() will be run when you invoke this action
- *
- * @param Cloud Functions actions accept a single parameter, which must be a JSON object.
- *
- * @return The output of this action, which must be a JSON object.
- *
+/*
+*
+* Golang version of PowerOff/On VSI
+* Author: Gerson Itiro Hidaka (itiro@br.ibm.com)
+*
+* Main() will be run when you invoke this action
+* @param receives the parameter
+* @return The output of this action, which is a JSON object.
+* using goroutines and WaitGroup
+*
  */
 package main
 
@@ -16,12 +18,16 @@ import (
 	"log"
 	"net/http"
 	"strconv"
-	"time"
+	//"time"
+	"sync"
 )
+
+//global variables - wait group (goroutines)
+var wg sync.WaitGroup
 
 // Main is the function implementing the action
 func Main(params map[string]interface{}) map[string]interface{} {
-	// parse the input JSON
+	// parse the input parameters
 	username, ok := params["username"].(string)
 	if !ok {
 		username = "None"
@@ -38,18 +44,8 @@ func Main(params map[string]interface{}) map[string]interface{} {
 	if !ok {
 		tag = "None"
 	}
-	fmt.Println(params)
 
-	msg := make(map[string]interface{})
-	msg["username"] = username
-	msg["key"] = apikey
-	msg["tag"] = tag
-	msg["poweraction"] = poweraction
-
-	// can optionally log to stdout (or stderr)
-	fmt.Println(username)
-	fmt.Println(apikey)
-
+	//stdout message
 	fmt.Println("Starting Functions...")
 
 	// get the list of all VSIs from IBM Cloud account
@@ -64,10 +60,19 @@ func Main(params map[string]interface{}) map[string]interface{} {
 		fmt.Println(err)
 	}
 	bodyText, err := ioutil.ReadAll(resp.Body)
+
+	//building the return message
+	msg := make(map[string]interface{})
+	msg["username"] = username
+	msg["key"] = apikey
+	msg["tag"] = tag
+	msg["poweraction"] = poweraction
 	msg["body"] = string(bodyText)
 
-	// Acting on the VSIs
+	//stdout message
 	fmt.Println("Starting the Power Action on VSIs...")
+
+	// Acting on the VSIs
 	var vsiId float64
 	var vsi []map[string]interface{}
 	var vsiIdStr string
@@ -80,18 +85,23 @@ func Main(params map[string]interface{}) map[string]interface{} {
 		fmt.Printf("Id: %s ( %s )\n", vsiIdStr, vsiname)
 
 		//goroutine function
+		wg.Add(1)
 		go say(poweraction, vsiIdStr, username, apikey)
 	}
-	fmt.Println("End.")
 
-	//say(poweraction,vsiIdStr, username, apikey)
-	fmt.Println("Sleeping...")
-	time.Sleep(10000 * time.Millisecond)
+	//wait for all goroutines
+	fmt.Println("Waiting for goroutines return...")
+	wg.Wait()
+
+	//return message
+	fmt.Println("End.")
 	return msg
 }
 
 func say(poweraction string, vsiIdStr string, username string, apikey string) {
 	var url string
+
+	defer wg.Done()
 
 	if poweraction == "on" {
 		url = "https://api.softlayer.com/rest/v3.1/SoftLayer_Virtual_Guest/" + vsiIdStr + "/powerOn"
